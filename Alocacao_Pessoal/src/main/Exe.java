@@ -1,13 +1,19 @@
 package main;
 
-import model.Populacao;
+import model.Genetico;
+import model.Individuo;
 
 public class Exe {
 	
 	public static void main (String args[]){
-		Populacao populacao = new Populacao();
 		
-		populacao.iniciarPopulacao(5000);
+		Individuo individuo = new Individuo();
+		individuo.avaliar();
+		
+		Genetico genetico = new Genetico();
+		System.out.println(genetico.selecao());
+		System.out.println(genetico.getBetterList());
+		
 		
 		
 	}

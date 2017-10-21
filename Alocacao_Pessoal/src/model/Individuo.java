@@ -9,7 +9,7 @@ public class Individuo implements Comparable<Individuo> {
 
 	// Cada posiçao tera um valor aleatorio de enfemeros
 	private int[] turno = new int[6];
-	private Double coeficiente;
+	private Integer coeficiente;
 
 	public Individuo() {
 		this.setTurno();
@@ -37,7 +37,7 @@ public class Individuo implements Comparable<Individuo> {
 	}
 
 	public void avaliar() {
-		coeficiente = (this.turno[0] + this.turno[1] + this.turno[2] + (1.5 * this.turno[3]) + (2 * this.turno[4])
+		coeficiente = (int) (this.turno[0] + this.turno[1] + this.turno[2] + (1.5 * this.turno[3]) + (2 * this.turno[4])
 				+ this.turno[5]);
 	}
 
@@ -62,11 +62,11 @@ public class Individuo implements Comparable<Individuo> {
 		this.turno[5] = 20 + random.nextInt(100);
 	}
 
-	public Double getCoeficiente() {
+	public int getCoeficiente() {
 		return coeficiente;
 	}
 
-	public void setCoeficiente(Double coeficiente) {
+	public void setCoeficiente(int coeficiente) {
 		this.coeficiente = coeficiente;
 	}
 
