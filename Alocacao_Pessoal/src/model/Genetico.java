@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Genetico {
-	
+
 	private Random random = new Random();
 	private Individuo individuo;
 	private Populacao populacao = new Populacao();
 	private ArrayList<Integer> betterList = new ArrayList<>();
 
-	public ArrayList<Integer> selecao() {
-		
-		final int tam = 10; 
-		
-		populacao.iniciarPopulacao(tam);		
+	public Genetico(Populacao populacao) {
+		super();
+		this.populacao.iniciarPopulacao(10);
+	}
 
-		for (int i = 0; i < 10; i++) {
+	public ArrayList<Integer> selecao() {
+
+		final int tam = populacao.getLista().size();
+
+		for (int i = 0; i < tam; i++) {
 
 			int populacao1 = populacao.getLista().get(random.nextInt(tam)).getCoeficiente();
 			int populacao2 = populacao.getLista().get(random.nextInt(tam)).getCoeficiente();
