@@ -26,9 +26,12 @@ public class Populacao {
 	public void ordenarPopulacao() {
 		Collections.sort(lista);
 		
+		System.out.print("População:");
+		System.out.print("[");
 		for (Individuo individuo : lista) {
-			System.out.println(individuo.getCoeficiente());
+			System.out.print(individuo.getCoeficiente() + ", ");
 		}
+		System.out.print("]");
 	}
 
 	public Individuo getIndividuo(int pos) {

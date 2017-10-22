@@ -110,7 +110,7 @@ public class Individuo implements Comparable<Individuo> {
 
 	@Override
 	public String toString() {
-		return "Individuo [random=" + random + ", turno=" + Arrays.toString(turno) + ", coeficiente=" + coeficiente
+		return "Individuo [turno=" + Arrays.toString(turno) + ", coeficiente=" + coeficiente
 				+ "]";
 	}
 
