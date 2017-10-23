@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Genetico implements Comparable<Genetico> {
@@ -10,45 +9,53 @@ public class Genetico implements Comparable<Genetico> {
 	private Individuo individuo;
 	private Individuo[] individuo2;
 	private Populacao populacao = new Populacao();
-	private ArrayList<Integer> betterList = new ArrayList<>();
 
 	public Genetico(Populacao populacao) {
 		super();
 		this.populacao.iniciarPopulacao(10);
 	}
 
-	public ArrayList<Integer> selecao() {
+	public ArrayList<Individuo> selecao() {
+
+		ArrayList<Individuo> betterList = new ArrayList<>();
+		
+		int pos1;
+		int pos2;
 
 		final int tam = populacao.getLista().size();
 
 		for (int i = 0; i < tam; i++) {
+			
+			pos1 = random.nextInt(tam);
+			pos2 = random.nextInt(tam);
 
-			int populacao1 = populacao.getLista().get(random.nextInt(tam)).getCoeficiente();
-			int populacao2 = populacao.getLista().get(random.nextInt(tam)).getCoeficiente();
+			int populacao1 = populacao.getLista().get(pos1).getCoeficiente();
+			int populacao2 = populacao.getLista().get(pos2).getCoeficiente();
 
 			if (populacao1 < populacao2) {
-				betterList.add(populacao1);
+				betterList.add(populacao.getIndividuo(pos1));
 			} else {
-				betterList.add(populacao2);
+				betterList.add(populacao.getIndividuo(pos1));
 
 			}
 
 		}
 
-		Collections.sort(betterList);
-	
+		// Collections.sort(betterList);
+
+		System.out.println("\nSeleção: " + betterList);
 
 		return betterList;
 	}
 
-	public Individuo[] cruzamento() { 
-		
+	public Individuo[] cruzamento(ArrayList<Individuo> list) {
+
 		int[] aux = new int[6];
 		int[] aux2 = new int[6];
-		
+
 		Individuo[] individuos = new Individuo[4];
 		individuos = populacao.getLista().toArray(new Individuo[populacao.getLista().size()]);
-		
+
 		int[] gene1 = individuos[0].getTurno();
 		int[] gene2 = individuos[1].getTurno();
 		int[] gene3 = individuos[2].getTurno();
@@ -57,11 +64,11 @@ public class Genetico implements Comparable<Genetico> {
 		aux[0] = gene1[0];
 		gene1[0] = gene2[0];
 		gene2[0] = aux[0];
-		
+
 		aux[1] = gene1[1];
 		gene1[1] = gene2[1];
 		gene2[1] = aux[1];
-		
+
 		aux2[0] = gene3[0];
 		gene3[0] = gene4[0];
 		gene4[0] = aux2[0];
@@ -95,14 +102,6 @@ public class Genetico implements Comparable<Genetico> {
 
 	public void setPopulacao(Populacao populacao) {
 		this.populacao = populacao;
-	}
-
-	public ArrayList<Integer> getBetterList() {
-		return betterList;
-	}
-
-	public void setBetterList(ArrayList<Integer> betterList) {
-		this.betterList = betterList;
 	}
 
 	@Override
