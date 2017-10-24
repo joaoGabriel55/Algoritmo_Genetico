@@ -15,7 +15,7 @@ public class Genetico implements Comparable<Genetico> {
 
 	public Genetico(Populacao populacao) {
 		super();
-		this.populacao.iniciarPopulacao(10);
+		this.populacao.iniciarPopulacao(100);
 	}
 
 	public ArrayList<Individuo> selecao() {
@@ -56,13 +56,13 @@ public class Genetico implements Comparable<Genetico> {
 		return betterList;
 	}
 
-	public Individuo[] cruzamento(ArrayList<Individuo> list) {
+	public Individuo[] cruzamento() {
 
 		int[] aux = new int[6];
 		int[] aux2 = new int[6];
 
 		Individuo[] individuos = new Individuo[4];
-		individuos = populacao.getLista().toArray(new Individuo[populacao.getLista().size()]);
+		individuos = betterList.toArray(new Individuo[betterList.size()]);
 
 		int[] gene1 = individuos[0].getTurno();
 		int[] gene2 = individuos[1].getTurno();
@@ -104,11 +104,7 @@ public class Genetico implements Comparable<Genetico> {
 
 	}
 
-	public ArrayList<Individuo> menorValor() {
-
-		ArrayList<Individuo> individuos = new ArrayList<>();
-
-		individuos = betterList;
+	public ArrayList<Individuo> menorValor(ArrayList<Individuo> individuos) {
 
 		Collections.sort(individuos);
 
