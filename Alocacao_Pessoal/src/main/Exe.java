@@ -37,7 +37,7 @@ public class Exe {
 
 			}
 
-		} while (geracao < 100);
+		} while (geracao < 10);
 		System.out.println(genetico.menorValor(genetico.getBetterList()));
 		if (taxaRep > 10)
 			System.out.println("Menor valor coeficiente estagnado " /* (rept.: " + taxaRep + "): */

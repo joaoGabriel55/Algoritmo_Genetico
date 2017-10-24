@@ -15,7 +15,7 @@ public class Genetico implements Comparable<Genetico> {
 
 	public Genetico(Populacao populacao) {
 		super();
-		this.populacao.iniciarPopulacao(100);
+		this.populacao.iniciarPopulacao(10);
 	}
 
 	public ArrayList<Individuo> selecao() {
@@ -61,15 +61,14 @@ public class Genetico implements Comparable<Genetico> {
 		int[] aux = new int[6];
 		int[] aux2 = new int[6];
 
-		Individuo[] individuos = new Individuo[4];
-		individuos = betterList.toArray(new Individuo[betterList.size()]);
+		Individuo[] individuos = betterList.toArray(new Individuo[betterList.size()]);
 
 		int[] gene1 = individuos[0].getTurno();
 		int[] gene2 = individuos[1].getTurno();
 		int[] gene3 = individuos[2].getTurno();
 		int[] gene4 = individuos[3].getTurno();
 
-		aux = gene1; // atribuição completa do vetor
+		aux = gene1;
 		gene1[0] = gene2[0];
 		gene2[0] = aux[0];
 
@@ -94,7 +93,7 @@ public class Genetico implements Comparable<Genetico> {
 		gene4[2] = aux2[2];
 
 		Individuo[] filhos = new Individuo[4];
-
+		
 		filhos[0] = new Individuo(gene1);
 		filhos[1] = new Individuo(gene2);
 		filhos[2] = new Individuo(gene3);
