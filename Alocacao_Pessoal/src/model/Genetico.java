@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class Genetico implements Comparable<Genetico> {
@@ -9,6 +11,7 @@ public class Genetico implements Comparable<Genetico> {
 	private Individuo individuo;
 	private Individuo[] individuo2;
 	private Populacao populacao = new Populacao();
+	ArrayList<Individuo> betterList = new ArrayList<>();
 
 	public Genetico(Populacao populacao) {
 		super();
@@ -17,15 +20,15 @@ public class Genetico implements Comparable<Genetico> {
 
 	public ArrayList<Individuo> selecao() {
 
-		ArrayList<Individuo> betterList = new ArrayList<>();
-		
+		betterList = new ArrayList<>();
+
 		int pos1;
 		int pos2;
 
 		final int tam = populacao.getLista().size();
 
 		for (int i = 0; i < tam; i++) {
-			
+
 			pos1 = random.nextInt(tam);
 			pos2 = random.nextInt(tam);
 
@@ -42,8 +45,13 @@ public class Genetico implements Comparable<Genetico> {
 		}
 
 		// Collections.sort(betterList);
+		for (int j = 0; j < betterList.size(); j++) {
+			System.out.print("Genes: " + Arrays.toString(betterList.get(j).getTurno()) + " Coeficiente: "
+					+ betterList.get(j).getCoeficiente() + " \n");
 
-		System.out.println("\nSeleção: " + betterList);
+		}
+
+		System.out.println(Collections.min(betterList));
 
 		return betterList;
 	}
@@ -61,7 +69,7 @@ public class Genetico implements Comparable<Genetico> {
 		int[] gene3 = individuos[2].getTurno();
 		int[] gene4 = individuos[3].getTurno();
 
-		aux[0] = gene1[0];
+		aux = gene1; // atribuição completa do vetor
 		gene1[0] = gene2[0];
 		gene2[0] = aux[0];
 
@@ -69,13 +77,21 @@ public class Genetico implements Comparable<Genetico> {
 		gene1[1] = gene2[1];
 		gene2[1] = aux[1];
 
-		aux2[0] = gene3[0];
+		aux[2] = gene1[2];
+		gene1[2] = gene2[2];
+		gene2[2] = aux[2];
+
+		aux2 = gene3;
 		gene3[0] = gene4[0];
 		gene4[0] = aux2[0];
 
 		aux2[1] = gene3[1];
 		gene3[1] = gene4[1];
 		gene4[1] = aux2[1];
+
+		aux2[2] = gene3[2];
+		gene3[2] = gene4[2];
+		gene4[2] = aux2[2];
 
 		Individuo[] filhos = new Individuo[4];
 
@@ -86,6 +102,17 @@ public class Genetico implements Comparable<Genetico> {
 
 		return filhos;
 
+	}
+
+	public ArrayList<Individuo> menorValor() {
+
+		ArrayList<Individuo> individuos = new ArrayList<>();
+
+		individuos = betterList;
+
+		Collections.sort(individuos);
+
+		return individuos;
 	}
 
 	public Random getRandom() {
@@ -102,6 +129,22 @@ public class Genetico implements Comparable<Genetico> {
 
 	public void setPopulacao(Populacao populacao) {
 		this.populacao = populacao;
+	}
+
+	public Individuo getIndividuo() {
+		return individuo;
+	}
+
+	public void setIndividuo(Individuo individuo) {
+		this.individuo = individuo;
+	}
+
+	public ArrayList<Individuo> getBetterList() {
+		return betterList;
+	}
+
+	public void setBetterList(ArrayList<Individuo> betterList) {
+		this.betterList = betterList;
 	}
 
 	@Override

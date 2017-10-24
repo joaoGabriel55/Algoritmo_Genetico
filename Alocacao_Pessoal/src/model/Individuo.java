@@ -37,7 +37,7 @@ public class Individuo implements Comparable<Individuo> {
 		// testa se deve fazer mutacao
 		if (random.nextInt() <= 5) {
 			int posAleatoria = random.nextInt(genes.length); // define gene que
-			turno = genes;													// sera mutado
+			turno = genes; // sera mutado
 			mutacao(posAleatoria);
 		}
 		avaliar();
@@ -93,11 +93,11 @@ public class Individuo implements Comparable<Individuo> {
 		this.turno[5] = 20 + random.nextInt(100);
 	}
 
-	public int getCoeficiente() {
+	public Integer getCoeficiente() {
 		return coeficiente;
 	}
 
-	public void setCoeficiente(int coeficiente) {
+	public void setCoeficiente(Integer coeficiente) {
 		this.coeficiente = coeficiente;
 	}
 
@@ -110,8 +110,7 @@ public class Individuo implements Comparable<Individuo> {
 
 	@Override
 	public String toString() {
-		return "Individuo [turno=" + Arrays.toString(turno) + ", coeficiente=" + coeficiente
-				+ "]";
+		return "Individuo [turno=" + Arrays.toString(turno) + ", coeficiente=" + coeficiente + "]";
 	}
 
 }
